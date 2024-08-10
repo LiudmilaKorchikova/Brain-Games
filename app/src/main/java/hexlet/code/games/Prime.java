@@ -5,14 +5,14 @@ import java.util.Random;
 import static hexlet.code.Engine.playGame;
 
 public class Prime {
+    private static final int QUESTIONS_COUNT = 3;
+    private static final int NUMBER_LIMIT = 100;
     public static void playPrime() {
         Random rand = new Random();
-        int questionsCount = 3;
-        int numberLimit = 100;
-        String[] questions = new String[questionsCount];
-        String[] expected = new String[questionsCount];
-        for (int i = 0; i < 3; i++) {
-            int number = rand.nextInt(numberLimit);
+        String[] questions = new String[QUESTIONS_COUNT];
+        String[] expected = new String[QUESTIONS_COUNT];
+        for (int i = 0; i < QUESTIONS_COUNT; i++) {
+            int number = rand.nextInt(NUMBER_LIMIT);
             questions[i] = Integer.toString(number);
             expected[i] = generateCorrectAnswer(number);
         }
@@ -27,7 +27,7 @@ public class Prime {
         if (number <= 1 || number % 2 == 0) {
             return "no";
         }
-        for (int i = 3; i <=  Math.sqrt(number); i += 2) {
+        for (int i = 1; i <=  Math.sqrt(number); i++) {
             if (number % i == 0) {
                 return "no";
             }

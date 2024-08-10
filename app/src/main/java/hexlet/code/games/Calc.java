@@ -3,16 +3,16 @@ import java.util.Random;
 import static hexlet.code.Engine.playGame;
 
 public class Calc {
+    private static final int QUESTIONS_COUNT = 3;
+    private static final int NUMBER_LIMIT = 100;
     public static void playCalc() {
         Random rand = new Random();
-        int questionsCount = 3;
-        int numberLimit = 100;
-        String[] questions = new String[questionsCount];
-        String[] expected = new String[questionsCount];
-        for (int i = 0; i < 3; i++) {
+        String[] questions = new String[QUESTIONS_COUNT];
+        String[] expected = new String[QUESTIONS_COUNT];
+        for (int i = 0; i < QUESTIONS_COUNT; i++) {
             char operation = generateOperation();
-            int firstNumber = rand.nextInt(numberLimit);
-            int secondNumber = rand.nextInt(numberLimit);
+            int firstNumber = rand.nextInt(NUMBER_LIMIT);
+            int secondNumber = rand.nextInt(NUMBER_LIMIT);
             questions[i] = generateQuestion(firstNumber, secondNumber, operation);
             expected[i] = generateCorrectAnswer(firstNumber, secondNumber, operation);
         }

@@ -5,18 +5,18 @@ import java.util.Random;
 import static hexlet.code.Engine.playGame;
 
 public class Progression {
+    private static final int QUESTIONS_COUNT = 3;
+    private static final int NUMBER_LIMIT = 10;
+    private static final int STEP_LIMIT = 5;
+    private static final int INDEX_LIMIT = 10;
     public static void playProgression() {
         Random rand = new Random();
-        int questionsCount = 3;
-        int numberLimit = 10;
-        int stepLimit = 5;
-        int indexLimit = 10;
-        String[] questions = new String[questionsCount];
-        String[] expected = new String[questionsCount];
-        for (int i = 0; i < 3; i++) {
-            int number = rand.nextInt(numberLimit);
-            int step = rand.nextInt(stepLimit) + 1;
-            int emptyIndex = rand.nextInt(indexLimit);
+        String[] questions = new String[QUESTIONS_COUNT];
+        String[] expected = new String[QUESTIONS_COUNT];
+        for (int i = 0; i < QUESTIONS_COUNT; i++) {
+            int number = rand.nextInt(NUMBER_LIMIT);
+            int step = rand.nextInt(STEP_LIMIT) + 1;
+            int emptyIndex = rand.nextInt(INDEX_LIMIT);
             questions[i] = generateQuestion(number, step, emptyIndex);
             expected[i] = generateCorrectAnswer(number, step, emptyIndex);
         }
@@ -26,7 +26,7 @@ public class Progression {
 
     private static String generateQuestion(int number, int step, int emptyIndex) {
         StringBuilder question = new StringBuilder();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < NUMBER_LIMIT; i++) {
             if (i == emptyIndex) {
                 question.append(" ..");
             } else {

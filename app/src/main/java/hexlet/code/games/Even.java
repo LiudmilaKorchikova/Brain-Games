@@ -5,14 +5,14 @@ import java.util.Random;
 import static hexlet.code.Engine.playGame;
 
 public class Even {
+    private static final int QUESTIONS_COUNT = 3;
+    private static final int NUMBER_LIMIT = 100;
     public static void playEvenGame() {
         Random rand = new Random();
-        int questionsCount = 3;
-        int numberLimit = 100;
-        String[] questions = new String[questionsCount];
-        String[] expected = new String[questionsCount];
-        for (int i = 0; i < 3; i++) {
-            int number = rand.nextInt(numberLimit);
+        String[] questions = new String[QUESTIONS_COUNT];
+        String[] expected = new String[QUESTIONS_COUNT];
+        for (int i = 0; i < QUESTIONS_COUNT; i++) {
+            int number = rand.nextInt(NUMBER_LIMIT);
             questions[i] = Integer.toString(number);
             expected[i] = generateCorrectAnswer(number);
         }
