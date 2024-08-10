@@ -7,6 +7,7 @@ import static hexlet.code.Engine.playGame;
 public class Prime {
     private static final int QUESTIONS_COUNT = 3;
     private static final int NUMBER_LIMIT = 100;
+    private static final int START_DIVISOR = 3;
     public static void playPrime() {
         Random rand = new Random();
         String[] questions = new String[QUESTIONS_COUNT];
@@ -27,7 +28,7 @@ public class Prime {
         if (number <= 1 || number % 2 == 0) {
             return "no";
         }
-        for (int i = 1; i <=  Math.sqrt(number); i++) {
+        for (int i = START_DIVISOR; i <=  Math.sqrt(number); i += 2) {
             if (number % i == 0) {
                 return "no";
             }
