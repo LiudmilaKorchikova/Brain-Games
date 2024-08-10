@@ -16,7 +16,7 @@ public class Progression {
         for (int i = 0; i < 3; i++) {
             int number = rand.nextInt(numberLimit);
             int step = rand.nextInt(stepLimit) + 1;
-            int emptyIndex = rand.nextInt(indexLimit) + 1;
+            int emptyIndex = rand.nextInt(indexLimit);
             questions[i] = generateQuestion(number, step, emptyIndex);
             expected[i] = generateCorrectAnswer(number, step, emptyIndex);
         }
