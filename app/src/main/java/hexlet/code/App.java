@@ -1,7 +1,7 @@
 package hexlet.code;
 
 
-import static hexlet.code.Cli.printWelcomeForm;
+import static hexlet.code.Cli.getUserName;
 import static hexlet.code.games.Even.playEvenGame;
 import static hexlet.code.games.Calc.playCalc;
 import static hexlet.code.games.GCD.playGCD;
@@ -26,7 +26,7 @@ public class App {
         System.out.print("Your choice: ");
         var id = scanner.nextLine();
         switch (id) {
-            case "1": printWelcomeForm();
+            case "1": getUserName();
             break;
             case "2": playEvenGame();
             break;

@@ -7,10 +7,12 @@ import static hexlet.code.Engine.playGame;
 public class Even {
     public static void playEvenGame() {
         Random rand = new Random();
-        String[] questions = new String[3];
-        String[] expected = new String[3];
+        int questionsCount = 3;
+        int numberLimit = 100;
+        String[] questions = new String[questionsCount];
+        String[] expected = new String[questionsCount];
         for (int i = 0; i < 3; i++) {
-            int number = rand.nextInt(100);
+            int number = rand.nextInt(numberLimit);
             questions[i] = Integer.toString(number);
             expected[i] = generateCorrectAnswer(number);
         }

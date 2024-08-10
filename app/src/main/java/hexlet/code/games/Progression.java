@@ -7,12 +7,16 @@ import static hexlet.code.Engine.playGame;
 public class Progression {
     public static void playProgression() {
         Random rand = new Random();
-        String[] questions = new String[3];
-        String[] expected = new String[3];
+        int questionsCount = 3;
+        int numberLimit = 10;
+        int stepLimit = 5;
+        int indexLimit = 10;
+        String[] questions = new String[questionsCount];
+        String[] expected = new String[questionsCount];
         for (int i = 0; i < 3; i++) {
-            int number = rand.nextInt(10);
-            int step = rand.nextInt(5) + 1;
-            int emptyIndex = rand.nextInt(10);
+            int number = rand.nextInt(numberLimit);
+            int step = rand.nextInt(stepLimit) + 1;
+            int emptyIndex = rand.nextInt(indexLimit) + 1;
             questions[i] = generateQuestion(number, step, emptyIndex);
             expected[i] = generateCorrectAnswer(number, step, emptyIndex);
         }

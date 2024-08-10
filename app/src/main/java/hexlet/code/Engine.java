@@ -2,15 +2,15 @@ package hexlet.code;
 
 import java.util.Scanner;
 
-import static hexlet.code.Cli.printWelcomeForm;
+import static hexlet.code.Cli.getUserName;
 
 public class Engine {
-    public static String userName;
     public static void playGame(String[] expected, String[] question, String rules) {
-        printWelcomeForm();
+        String userName = getUserName();
         System.out.println(rules);
         var scanner = new Scanner(System.in);
-        for (int i = 0; i < 3; i++) {
+        int questionsCount = 3;
+        for (int i = 0; i < questionsCount; i++) {
             System.out.println("Question: " + question[i]);
             System.out.print("Your answer: ");
             String received = scanner.nextLine();

@@ -7,10 +7,12 @@ import static hexlet.code.Engine.playGame;
 public class Prime {
     public static void playPrime() {
         Random rand = new Random();
-        String[] questions = new String[3];
-        String[] expected = new String[3];
+        int questionsCount = 3;
+        int numberLimit = 100;
+        String[] questions = new String[questionsCount];
+        String[] expected = new String[questionsCount];
         for (int i = 0; i < 3; i++) {
-            int number = rand.nextInt();
+            int number = rand.nextInt(numberLimit);
             questions[i] = Integer.toString(number);
             expected[i] = generateCorrectAnswer(number);
         }
