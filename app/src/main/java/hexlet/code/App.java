@@ -1,12 +1,12 @@
 package hexlet.code;
 
+import hexlet.code.games.Calc;
+import hexlet.code.games.Even;
+import hexlet.code.games.GCD;
+import hexlet.code.games.Prime;
+import hexlet.code.games.Progression;
 
 import static hexlet.code.Cli.getUserName;
-import static hexlet.code.games.Even.playEvenGame;
-import static hexlet.code.games.Calc.playCalc;
-import static hexlet.code.games.GCD.playGCD;
-import static hexlet.code.games.Prime.playPrime;
-import static hexlet.code.games.Progression.playProgression;
 
 import java.util.Scanner;
 
@@ -19,26 +19,33 @@ public class App {
                 + "1 - Greet\n"
                 + "2 - Even\n"
                 + "3 - Calc\n"
-                + "4 - Nod\n"
+                + "4 - GCD\n"
                 + "5 - Progression\n"
                 + "6 - Prime\n"
                 + "0 - Exit");
         System.out.print("Your choice: ");
         var id = scanner.nextLine();
         switch (id) {
-            case "1": getUserName();
-            break;
-            case "2": playEvenGame();
-            break;
-            case "3": playCalc();
-            break;
-            case "4": playGCD();
-            break;
-            case "5": playProgression();
-            break;
-            case "6": playPrime();
-            break;
-            case "0": System.exit(0);
+            case "1":
+                getUserName();
+                break;
+            case "2":
+                Even.run();
+                break;
+            case "3":
+                Calc.run();
+                break;
+            case "4":
+                GCD.run();
+                break;
+            case "5":
+                Progression.run();
+                break;
+            case "6":
+                Prime.run();
+                break;
+            case "0":
+                System.exit(0);
             default:
         }
     }

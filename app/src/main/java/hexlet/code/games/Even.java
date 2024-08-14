@@ -1,29 +1,31 @@
 package hexlet.code.games;
 
-import java.util.Random;
+import hexlet.code.Engine;
 
-import static hexlet.code.Engine.playGame;
+import static hexlet.code.Utils.generateRandomNumber;
 
 public class Even {
     private static final int QUESTIONS_COUNT = 3;
     private static final int NUMBER_LIMIT = 100;
-    public static void playEvenGame() {
-        Random rand = new Random();
-        String[] questions = new String[QUESTIONS_COUNT];
-        String[] expected = new String[QUESTIONS_COUNT];
+    private static final int QUESTION_ANSWER_PAIR = 2;
+    public static void run() {
+        String[][] questionsAndCorrectAnswers = new String[QUESTIONS_COUNT][QUESTION_ANSWER_PAIR];
         for (int i = 0; i < QUESTIONS_COUNT; i++) {
-            int number = rand.nextInt(NUMBER_LIMIT);
-            questions[i] = Integer.toString(number);
-            expected[i] = generateCorrectAnswer(number);
+            questionsAndCorrectAnswers[i] = generateRoundData();
         }
         String rules = "Answer 'yes' if the number is even, otherwise answer 'no'.";
-        playGame(expected, questions, rules);
+        Engine.run(questionsAndCorrectAnswers, rules);
     }
 
-    private static String generateCorrectAnswer(int number) {
-        if (number % 2 == 0) {
-            return "yes";
-        }
-        return "no";
+    private static String[] generateRoundData() {
+        String[] roundData = new String[QUESTION_ANSWER_PAIR];
+        int number = generateRandomNumber(NUMBER_LIMIT);
+        roundData[0] = Integer.toString(number);
+        roundData[1] = isEven(number) ? "yes" : "no";
+        return roundData;
+    }
+
+    private static boolean isEven(int number) {
+        return number % 2 == 0;
     }
 }

@@ -1,40 +1,51 @@
 package hexlet.code.games;
 
-import java.util.Random;
+import hexlet.code.Engine;
 
-import static hexlet.code.Engine.playGame;
+import static hexlet.code.Utils.generateRandomNumber;
 
 public class Progression {
     private static final int QUESTIONS_COUNT = 3;
+    private static final int QUESTION_ANSWER_PAIR = 2;
     private static final int NUMBER_LIMIT = 10;
     private static final int STEP_LIMIT = 5;
-    private static final int INDEX_LIMIT = 10;
-    public static void playProgression() {
-        Random rand = new Random();
-        String[] questions = new String[QUESTIONS_COUNT];
-        String[] expected = new String[QUESTIONS_COUNT];
+    private static final int LENGTH = 10;
+    public static void run() {
+        String[][] questionsAndCorrectAnswers = new String[QUESTIONS_COUNT][QUESTION_ANSWER_PAIR];
         for (int i = 0; i < QUESTIONS_COUNT; i++) {
-            int number = rand.nextInt(NUMBER_LIMIT);
-            int step = rand.nextInt(STEP_LIMIT) + 1;
-            int emptyIndex = rand.nextInt(INDEX_LIMIT);
-            questions[i] = generateQuestion(number, step, emptyIndex);
-            expected[i] = generateCorrectAnswer(number, step, emptyIndex);
+            questionsAndCorrectAnswers[i] = generateRoundData();
         }
         String rules = "What number is missing in the progression?";
-        playGame(expected, questions, rules);
+        Engine.run(questionsAndCorrectAnswers, rules);
     }
 
-    private static String generateQuestion(int number, int step, int emptyIndex) {
-        StringBuilder question = new StringBuilder();
-        for (int i = 0; i < NUMBER_LIMIT; i++) {
-            if (i == emptyIndex) {
-                question.append(" ..");
-            } else {
-                question.append(" ").append(number);
-            }
-            number += step;
+    private static String[] generateRoundData() {
+        String[] roundData = new String[QUESTION_ANSWER_PAIR];
+        int number = generateRandomNumber(NUMBER_LIMIT);
+        int step = generateRandomNumber(STEP_LIMIT) + 1;
+        int emptyIndex = generateRandomNumber(LENGTH);
+        String[] numbers = generateNumbersArray(number, step);
+        roundData[0] = generateQuestion(numbers, emptyIndex);
+        roundData[1] = generateCorrectAnswer(number, step, emptyIndex);
+        return roundData;
+    }
+
+
+    private static String[] generateNumbersArray(int firstNumber, int step) {
+        String[] numbers = new String[LENGTH];
+        int element = firstNumber;
+        for (int i = 0; i < LENGTH; i++) {
+            numbers[i] = String.valueOf(element);
+            element += step;
         }
-        return question.toString().trim();
+        return numbers;
+    }
+
+    private static String generateQuestion(String[] numbers, int emptyIndex) {
+        String[] numbersCopy = numbers.clone();
+        numbersCopy[emptyIndex] = "..";
+        String question = String.join(" ", numbersCopy);
+        return question.trim();
     }
 
     private static String generateCorrectAnswer(int number, int step, int emptyIndex) {

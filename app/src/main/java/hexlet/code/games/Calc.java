@@ -1,38 +1,35 @@
 package hexlet.code.games;
+
+import hexlet.code.Engine;
 import java.util.Random;
-import static hexlet.code.Engine.playGame;
+import static hexlet.code.Utils.generateRandomNumber;
 
 public class Calc {
     private static final int QUESTIONS_COUNT = 3;
     private static final int NUMBER_LIMIT = 100;
-    public static void playCalc() {
-        Random rand = new Random();
-        String[] questions = new String[QUESTIONS_COUNT];
-        String[] expected = new String[QUESTIONS_COUNT];
+    private static final int QUESTION_ANSWER_PAIR = 2;
+    private static final char[] OPERATIONS = {'+', '-', '*'};
+    public static void run() {
+        String[][] questionsAndCorrectAnswers = new String[QUESTIONS_COUNT][QUESTION_ANSWER_PAIR];
         for (int i = 0; i < QUESTIONS_COUNT; i++) {
-            char operation = generateOperation();
-            int firstNumber = rand.nextInt(NUMBER_LIMIT);
-            int secondNumber = rand.nextInt(NUMBER_LIMIT);
-            questions[i] = generateQuestion(firstNumber, secondNumber, operation);
-            expected[i] = generateCorrectAnswer(firstNumber, secondNumber, operation);
+            questionsAndCorrectAnswers[i] = generateRoundData();
         }
         String rules = "What is the result of the expression?";
-        playGame(expected, questions, rules);
+        Engine.run(questionsAndCorrectAnswers, rules);
     }
 
-    private static char generateOperation() {
-        char[] operations = {'+', '-', '*'};
-        return operations[new Random().nextInt(operations.length)];
+    private static String[] generateRoundData() {
+        String[] roundData = new String[QUESTION_ANSWER_PAIR];
+        char operation = OPERATIONS[new Random().nextInt(OPERATIONS.length)];
+        int firstNumber = generateRandomNumber(NUMBER_LIMIT);
+        int secondNumber = generateRandomNumber(NUMBER_LIMIT);
+        roundData[0] = generateQuestion(firstNumber, secondNumber, operation);
+        roundData[1] = generateCorrectAnswer(firstNumber, secondNumber, operation);
+        return roundData;
     }
 
     private static String generateQuestion(int firstNumber, int secondNumber, char operation) {
-        if (operation == '+') {
-            return firstNumber + " + " + secondNumber;
-        }
-        if (operation == '-') {
-            return firstNumber + " - " + secondNumber;
-        }
-        return firstNumber + " * " + secondNumber;
+        return firstNumber + " " + operation + " " + secondNumber;
     }
 
     private static String generateCorrectAnswer(int firstNumber, int secondNumber, char operation) {
