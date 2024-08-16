@@ -5,17 +5,16 @@ import java.util.Random;
 import static hexlet.code.Utils.generateRandomNumber;
 
 public class Calc {
-    private static final int QUESTIONS_COUNT = 3;
     private static final int NUMBER_LIMIT = 100;
     private static final int QUESTION_ANSWER_PAIR = 2;
     private static final char[] OPERATIONS = {'+', '-', '*'};
+    private static final String RULES = "What is the result of the expression?";
     public static void run() {
-        String[][] questionsAndCorrectAnswers = new String[QUESTIONS_COUNT][QUESTION_ANSWER_PAIR];
-        for (int i = 0; i < QUESTIONS_COUNT; i++) {
+        String[][] questionsAndCorrectAnswers = new String[Engine.QUESTIONS_COUNT][QUESTION_ANSWER_PAIR];
+        for (int i = 0; i < Engine.QUESTIONS_COUNT; i++) {
             questionsAndCorrectAnswers[i] = generateRoundData();
         }
-        String rules = "What is the result of the expression?";
-        Engine.run(questionsAndCorrectAnswers, rules);
+        Engine.run(questionsAndCorrectAnswers, RULES);
     }
 
     private static String[] generateRoundData() {
@@ -23,22 +22,21 @@ public class Calc {
         char operation = OPERATIONS[new Random().nextInt(OPERATIONS.length)];
         int firstNumber = generateRandomNumber(NUMBER_LIMIT);
         int secondNumber = generateRandomNumber(NUMBER_LIMIT);
-        roundData[0] = generateQuestion(firstNumber, secondNumber, operation);
-        roundData[1] = generateCorrectAnswer(firstNumber, secondNumber, operation);
+        roundData[0] = firstNumber + " " + operation + " " + secondNumber;
+        roundData[1] = Integer.toString(generateCorrectAnswer(firstNumber, secondNumber, operation));
         return roundData;
     }
 
-    private static String generateQuestion(int firstNumber, int secondNumber, char operation) {
-        return firstNumber + " " + operation + " " + secondNumber;
-    }
-
-    private static String generateCorrectAnswer(int firstNumber, int secondNumber, char operation) {
-        if (operation == '+') {
-            return Integer.toString(firstNumber + secondNumber);
+    private static int generateCorrectAnswer(int firstNumber, int secondNumber, char operation) {
+        switch (operation) {
+            case '+':
+                return firstNumber + secondNumber;
+            case '-':
+                return firstNumber - secondNumber;
+            case '*':
+                return firstNumber * secondNumber;
+            default:
+                throw new RuntimeException("Invalid operation: " + operation);
         }
-        if (operation == '-') {
-            return Integer.toString(firstNumber - secondNumber);
-        }
-        return Integer.toString(firstNumber * secondNumber);
     }
 }

@@ -5,18 +5,17 @@ import hexlet.code.Engine;
 import static hexlet.code.Utils.generateRandomNumber;
 
 public class Progression {
-    private static final int QUESTIONS_COUNT = 3;
     private static final int QUESTION_ANSWER_PAIR = 2;
     private static final int NUMBER_LIMIT = 10;
     private static final int STEP_LIMIT = 5;
     private static final int LENGTH = 10;
+    private static final String RULES = "What number is missing in the progression?";
     public static void run() {
-        String[][] questionsAndCorrectAnswers = new String[QUESTIONS_COUNT][QUESTION_ANSWER_PAIR];
-        for (int i = 0; i < QUESTIONS_COUNT; i++) {
+        String[][] questionsAndCorrectAnswers = new String[Engine.QUESTIONS_COUNT][QUESTION_ANSWER_PAIR];
+        for (int i = 0; i < Engine.QUESTIONS_COUNT; i++) {
             questionsAndCorrectAnswers[i] = generateRoundData();
         }
-        String rules = "What number is missing in the progression?";
-        Engine.run(questionsAndCorrectAnswers, rules);
+        Engine.run(questionsAndCorrectAnswers, RULES);
     }
 
     private static String[] generateRoundData() {
@@ -26,7 +25,7 @@ public class Progression {
         int emptyIndex = generateRandomNumber(LENGTH);
         String[] numbers = generateNumbersArray(number, step);
         roundData[0] = generateQuestion(numbers, emptyIndex);
-        roundData[1] = generateCorrectAnswer(number, step, emptyIndex);
+        roundData[1] = numbers[emptyIndex];
         return roundData;
     }
 
@@ -46,9 +45,5 @@ public class Progression {
         numbersCopy[emptyIndex] = "..";
         String question = String.join(" ", numbersCopy);
         return question.trim();
-    }
-
-    private static String generateCorrectAnswer(int number, int step, int emptyIndex) {
-        return Integer.toString(number + step * emptyIndex);
     }
 }

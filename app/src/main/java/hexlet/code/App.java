@@ -45,7 +45,7 @@ public class App {
                 Prime.run();
                 break;
             case "0":
-                System.exit(0);
+                return;
             default:
         }
     }

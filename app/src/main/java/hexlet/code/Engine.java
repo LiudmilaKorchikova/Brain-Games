@@ -5,7 +5,7 @@ import java.util.Scanner;
 import static hexlet.code.Cli.getUserName;
 
 public class Engine {
-    private static final int QUESTIONS_COUNT = 3;
+    public static final int QUESTIONS_COUNT = 3;
     public static void run(String[][] questionsAndCorrectAnswers, String rules) {
         String userName = getUserName();
         System.out.println(rules);
@@ -21,7 +21,7 @@ public class Engine {
                         + " is wrong answer ;(. Correct answer was "
                         + "'" + questionAnswerPair[1] + "'"
                         + "\nLet's try again, " + userName + "!");
-                System.exit(0);
+                return;
             }
         }
         System.out.println("Congratulations, " + userName + "!");
