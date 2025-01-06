@@ -1,3 +1,10 @@
+A console application that allows the player to choose from several games.
+
+Before starting, the player is prompted to enter their name.
+The player is asked a question and must type the answer in the console.
+The game ends if the player answers incorrectly. After three consecutive correct answers, the player wins.
+After finishing a game (win or lose), the player can choose another game or exit the application.
+
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/LiudmilaKorchikova/java-project-61/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/LiudmilaKorchikova/java-project-61/actions)
 ### Code climate badge:
